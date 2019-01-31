@@ -9,14 +9,18 @@ import { formatReadingTime } from '../utils/helpers'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
+    const {
+      title,
+      published,
+      childMarkdownRemark: { excerpt, timeToRead, html },
+    } = this.props.data.bloggerPost
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
-        <h1>{post.frontmatter.title}</h1>
+        <SEO title={title} description={excerpt} />
+        <h1>{title}</h1>
         <p
           style={{
             ...scale(-1 / 5),
@@ -25,10 +29,10 @@ class BlogPostTemplate extends React.Component {
             marginTop: rhythm(-1),
           }}
         >
-          {post.frontmatter.date}
-          {` • ${formatReadingTime(post.timeToRead)}`}
+          {published}
+          {` • ${formatReadingTime(timeToRead)}`}
         </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -64,15 +68,15 @@ class BlogPostTemplate extends React.Component {
         >
           <li>
             {previous && (
-              <Link to={previous.frontmatter.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link to={`/${previous.slug}`} rel="prev">
+                ← {previous.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.frontmatter.slug} rel="next">
-                {next.frontmatter.title} →
+              <Link to={`/${next.slug}`} rel="next">
+                {next.title} →
               </Link>
             )}
           </li>
@@ -92,14 +96,14 @@ export const pageQuery = graphql`
         author
       }
     }
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+    bloggerPost(slug: { eq: $slug }) {
       id
-      excerpt(pruneLength: 160)
-      html
-      timeToRead
-      frontmatter {
-        title
-        date(formatString: "DD MMMM YYYY", locale: "it")
+      title
+      published(formatString: "DD MMMM YYYY", locale: "it")
+      childMarkdownRemark {
+        excerpt(pruneLength: 160)
+        html
+        timeToRead
       }
     }
   }

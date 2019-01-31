@@ -34,38 +34,40 @@ exports.sourceNodes = async ({ actions, createNodeId }, { apiKey, blogId }) => {
   const rePost = /^https?:\/\/(?:[^/]+)\/\d{4}\/\d{2}\/([^/][^.]+)\.html$/
   const posts = postResult.data.items
 
-  posts.forEach(post => {
-    unified()
-      .use(parse)
-      .use(rehype2remark)
-      .use(stringify)
-      .process(post.content, function(err, md) {
-        if (err) console.log(err)
-        const segments = rePost.exec(post.url)
-        const gatsbyPost = Object.assign({ slug: segments[1] }, post, {
-          id: createNodeId(post.id),
-          parent: null,
-          children: [],
-          internal: {
-            type: refactoredEntityTypes.post,
-            mediaType: `text/markdown`,
-            content: `---
+  if (posts) {
+    posts.forEach(post => {
+      unified()
+        .use(parse)
+        .use(rehype2remark)
+        .use(stringify)
+        .process(post.content, function(err, md) {
+          if (err) console.log(err)
+          const segments = rePost.exec(post.url)
+          const gatsbyPost = Object.assign({ slug: segments[1] }, post, {
+            id: createNodeId(post.id),
+            parent: null,
+            children: [],
+            internal: {
+              type: refactoredEntityTypes.post,
+              mediaType: `text/markdown`,
+              content: `---
 title: '${post.title.replace("'", "''")}'
 date: '${post.published}'
 slug: '${segments[1]}'
 ---
 
 ${md}`,
-            contentDigest: crypto
-              .createHash(`md5`)
-              .update(JSON.stringify(post))
-              .digest(`hex`),
-          },
-        })
+              contentDigest: crypto
+                .createHash(`md5`)
+                .update(JSON.stringify(post))
+                .digest(`hex`),
+            },
+          })
 
-        createNode(gatsbyPost)
-      })
-  })
+          createNode(gatsbyPost)
+        })
+    })
+  }
 
   let pageResult
 
@@ -81,42 +83,44 @@ ${md}`,
   const rePage = /^https?:\/\/(?:[^/]+)\/p\/([^/][^.]+)\.html$/
   const pages = pageResult.data.items
 
-  pages.forEach(page => {
-    unified()
-      .use(parse)
-      .use(rehype2remark)
-      .use(stringify)
-      .process(post.content, function(err, md) {
-        if (err) console.log(err)
-        const segments = rePage.exec(page.url)
-        const gatsbyPage = Object.assign({ slug: segments[1] }, page, {
-          id: createNodeId(page.id),
-          parent: null,
-          children: [],
-          internal: {
-            type: refactoredEntityTypes.page,
-            mediaType: `text/markdown`,
-            content: `---
+  if (pages) {
+    pages.forEach(page => {
+      unified()
+        .use(parse)
+        .use(rehype2remark)
+        .use(stringify)
+        .process(post.content, function(err, md) {
+          if (err) console.log(err)
+          const segments = rePage.exec(page.url)
+          const gatsbyPage = Object.assign({ slug: segments[1] }, page, {
+            id: createNodeId(page.id),
+            parent: null,
+            children: [],
+            internal: {
+              type: refactoredEntityTypes.page,
+              mediaType: `text/markdown`,
+              content: `---
   title: '${page.title.replace("'", "''")}'
   date: '${page.published}'
   slug: '${segments[1]}'
   ---
 
   ${md}`,
-            contentDigest: crypto
-              .createHash(`md5`)
-              .update(JSON.stringify(page))
-              .digest(`hex`),
-          },
+              contentDigest: crypto
+                .createHash(`md5`)
+                .update(JSON.stringify(page))
+                .digest(`hex`),
+            },
+          })
+
+          createNode(gatsbyPage)
         })
 
-        createNode(gatsbyPage)
+      setPluginStatus({
+        status: {
+          lastFetched: Date.now(),
+        },
       })
-
-    setPluginStatus({
-      status: {
-        lastFetched: Date.now(),
-      },
     })
-  })
+  }
 }
