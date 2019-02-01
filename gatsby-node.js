@@ -41,3 +41,16 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 }
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = node.frontmatter.slug
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
+}
