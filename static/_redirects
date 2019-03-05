@@ -1,7 +1,5 @@
 # Redirect domain aliases to primary domain
 https://blog.marcovalsecchi.it/* https://marcovalsecchi.it/:splat 301!
-https://www.valse.it/* https://marcovalsecchi.it/:splat 301!
-https://valse.it/* https://marcovalsecchi.it/:splat 301!
 
 # Optional: Redirect default Netlify subdomain to primary domain
 https://marcovalsecchi.netlify.com/* https://marcovalsecchi.it/:splat 301!
