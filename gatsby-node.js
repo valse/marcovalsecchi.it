@@ -7,7 +7,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allBloggerPost(sort: { fields: [published], order: DESC }, limit: 500) {
+        allBloggerPost(sort: { fields: [published], order: DESC }) {
           edges {
             node {
               title
