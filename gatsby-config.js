@@ -78,6 +78,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-zeit-now',
+    'gatsby-plugin-remove-serviceworker'
     //`gatsby-plugin-offline`,
   ],
 }
