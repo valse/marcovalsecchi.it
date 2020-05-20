@@ -65,7 +65,7 @@ module.exports = {
         short_name: `Marco Valsecchi`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#ff691f`,
+        theme_color: `#008080`,
         display: `minimal-ui`,
         icon: `content/assets/icon.png`,
       },
