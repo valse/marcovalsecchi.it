@@ -78,6 +78,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-zeit-now',
-    `gatsby-plugin-offline`,
+    //`gatsby-plugin-offline`,
   ],
 }
