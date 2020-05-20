@@ -20,7 +20,7 @@ export default function HTML(props) {
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
-        <script src="/www.google-analytics.com/analytics.js" async></script>
+        <script src="https://www.google-analytics.com/analytics.js" async></script>
         {props.postBodyComponents}
       </body>
     </html>
