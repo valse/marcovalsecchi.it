@@ -13,13 +13,14 @@ class BlogPostTemplate extends React.Component {
       title,
       published,
       childMarkdownRemark: { excerpt, timeToRead, html },
+      featuredImage
     } = this.props.data.bloggerPost
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={title} description={excerpt} />
+        <SEO title={title} description={excerpt} image={featuredImage?.childImageSharp.resize.src} />
         <h1>{title}</h1>
         <p
           style={{
@@ -100,10 +101,17 @@ export const pageQuery = graphql`
       id
       title
       published(formatString: "DD MMMM YYYY", locale: "it")
+      featuredImage {
+          childImageSharp{
+            resize(width: 1200, height: 630){
+              src              
+            }
+          }
+        }
       childMarkdownRemark {
         excerpt(pruneLength: 160)
         html
-        timeToRead
+        timeToRead        
       }
     }
   }
