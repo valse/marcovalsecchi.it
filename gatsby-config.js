@@ -77,8 +77,8 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    'gatsby-plugin-zeit-now',
-    'gatsby-plugin-remove-serviceworker'
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-remove-serviceworker',
     //`gatsby-plugin-offline`,
   ],
 }
