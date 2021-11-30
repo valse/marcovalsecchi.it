@@ -5666,16 +5666,16 @@ gatsby-remark-smartypants@5.2.0:
     retext-smartypants "^4.0.0"
     unist-util-visit "^2.0.3"
 
-gatsby-source-blogger@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/gatsby-source-blogger/-/gatsby-source-blogger-1.2.1.tgz#8b00ceac9996d3ab05459d1eb7194469a9dca5c6"
-  integrity sha512-/2DXrzGWsyJV9ac4M6wZvuj70MTOl1+54NdBkbw+QnPR9fo7u9gMQKQPEFAQ1yULZZ8FeS7idRwmgtqkfltiCQ==
+gatsby-source-blogger@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gatsby-source-blogger/-/gatsby-source-blogger-1.2.2.tgz#03c5a51a645da101f2e0d8e275e712e6ee15a218"
+  integrity sha512-KrWQZAiL1hv/ckqLfzAbSnpC/zlDxVWdp+FTEoiihPn8TnUgCx3T7TLX/a/GTw5fHDBWqpHtXVYo4Z4VNahKNw==
   dependencies:
     googleapis "^61.0.0"
     rehype-parse "^7.0.1"
-    rehype-remark "^8.0.0"
+    rehype-remark "^8.1.1"
     remark-stringify "^8.1.1"
-    unified "^9.2.0"
+    unified "^9.2.2"
 
 gatsby-source-filesystem@4.2.0:
   version "4.2.0"
@@ -10428,7 +10428,7 @@ rehype-parse@^7.0.1:
     hast-util-from-parse5 "^6.0.0"
     parse5 "^6.0.0"
 
-rehype-remark@^8.0.0:
+rehype-remark@^8.1.1:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/rehype-remark/-/rehype-remark-8.1.1.tgz#aa2e7a9b454aaf498788982e3095a0535241e7fa"
   integrity sha512-8HCmub9Fcy208A7RGbjmVlxTMYZXGaF7jsUE2tuvNKuaGFrk9yrYuKAXoTVC7QFwBPzTvEc5AOZKpUiWRkamlw==
@@ -12003,7 +12003,7 @@ unified@^8.0.0, unified@^8.4.2:
     trough "^1.0.0"
     vfile "^4.0.0"
 
-unified@^9.1.0, unified@^9.2.0, unified@^9.2.2:
+unified@^9.1.0, unified@^9.2.2:
   version "9.2.2"
   resolved "https://registry.yarnpkg.com/unified/-/unified-9.2.2.tgz#67649a1abfc3ab85d2969502902775eb03146975"
   integrity sha512-Sg7j110mtefBD+qunSLO1lqOEKdrwBFBrR6Qd8f4uwkhWNlbkaqwHse6e7QvD3AP/MNoJdEDLaf8OxYyoWgorQ==
