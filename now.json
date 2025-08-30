@@ -1,8 +1,0 @@
-{
-  "build": {
-    "env": {
-      "BLOGGER_API_KEY": "@blogger-api-key",
-      "BLOGGER_BLOG_ID": "@blogger-blog-id"
-    }
-  }
-}
